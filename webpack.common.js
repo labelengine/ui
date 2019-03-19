@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: "./src/index.tsx"
+    app: "./src/main.tsx"
   },
   output: {
     filename: "[name].bundle.js",
@@ -13,7 +13,10 @@ module.exports = {
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", "json"]
+    extensions: [".ts", ".tsx", ".js", "json"],
+    alias: {
+      app: path.resolve(__dirname, "src/app")
+    }
   },
 
   module: {
@@ -38,7 +41,7 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src/index.html') }),
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src/assets/index.html') }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
